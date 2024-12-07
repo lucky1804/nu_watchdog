@@ -1,8 +1,8 @@
-chnk1.dat
-chnk2.dat
-chnk3.dat
-chnk4.dat
-chnk5.dat
-chnk6.dat
-files.txt
-version.txt
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk1.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk2.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk3.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk4.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk5.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk6.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/files.txt
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/version.txt
