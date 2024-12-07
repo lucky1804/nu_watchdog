@@ -4,5 +4,9 @@ https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk3.dat
 https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk4.dat
 https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk5.dat
 https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk6.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk7.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk8.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk9.dat
+https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/chnk10.dat
 https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/files.txt
 https://lucky1804.github.io/nu_watchdog/webinterface/nu_app/update/version.txt
