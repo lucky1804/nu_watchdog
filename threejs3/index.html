@@ -1,88 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive 3D Earth</title>
-<style>
-body { margin: 0; overflow: hidden; }
-canvas { display: block; }
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotating Globe with Three.js</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
 </head>
 <body>
-
-<div id="threejs-container"></div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-// Scene Setup
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+    // Scene Setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-// Earth Geometry
-const radius = 2;
-const segments = 64;
-const geometry = new THREE.SphereGeometry(radius, segments, segments);
+    // Sphere Geometry
+    const geometry = new THREE.SphereGeometry(5, 64, 64); // High-detail sphere
 
-// Textures and Materials
-const textureLoader = new THREE.TextureLoader();
-const earthTexture = textureLoader.load('https://threejs.org/manual/examples/resources/images/wall.jpg');
-const bumpMap = textureLoader.load('https://threejs.org/manual/examples/resources/images/wall.jpg');
+    // Texture
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load('https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg'); // Placeholder texture
 
-const material = new THREE.MeshStandardMaterial({
-  map: earthTexture,
-  bumpMap: bumpMap,
-  bumpScale: 0.1
-});
+    // Material & Mesh
+    const material = new THREE.MeshPhongMaterial({ map: texture });
+    const globe = new THREE.Mesh(geometry, material);
+    scene.add(globe);
 
-// Mesh
-const earthMesh = new THREE.Mesh(geometry, material);
-scene.add(earthMesh);
+    // Position the camera
+    camera.position.z = 15;
 
-// Lighting
-const ambientLight = new THREE.AmbientLight(0x404040); // soft white light
-scene.add(ambientLight);
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+    scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-directionalLight.position.set(5, 5, 5).normalize();
-scene.add(directionalLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); // White directional light
+    directionalLight.position.set(5, 3, 10);
+    scene.add(directionalLight);
 
-// Camera Positioning
-camera.position.z = 6;
+    // Animation
+    function animate() {
+        requestAnimationFrame(animate);
 
-// Orbit Controls for Interaction
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-controls.dampingFactor = 0.25;
-controls.screenSpacePanning = false;
-controls.minDistance = 3;
-controls.maxDistance = 15;
+        // Rotate the globe around the Y-axis
+        globe.rotation.y += 0.002;
 
-// Animation Loop
-function animate() {
-    requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    }
 
-    // Rotate the globe slightly for an animation effect
-    earthMesh.rotation.y += 0.005;
+    animate();
 
-    renderer.render(scene, camera);
-}
-animate();
-
-// Handle Window Resizing
-window.addEventListener('resize', () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-});
-
+    // Resize Handling
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
 </script>
-
 </body>
 </html>
